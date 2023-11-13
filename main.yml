@@ -1,0 +1,4 @@
+- hosts: proxmox
+  become: yes
+  tasks:
+    - import_tasks: tasks/create_vm.yml
