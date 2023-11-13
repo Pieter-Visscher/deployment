@@ -1,4 +1,5 @@
 - hosts: proxmox
   become: yes
+  gather_facts: yes
   tasks:
     - import_tasks: tasks/create_vm.yml
