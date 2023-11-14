@@ -1,0 +1,25 @@
+- hosts: proxmox
+  become: yes
+  gather_facts: yes
+    # vars:
+    #range_home: '10.0.0.0/16'
+    #range_hetzner: '10.1.0.0/16'
+    #ipadr: '10.0.50.20'
+  tasks:
+    - name: set facts
+      ansible.builtin.set_fact:
+        test_ipadr1: 10.0.50.20
+        test_ipadr2: 10.1.50.20
+
+    - name: drop hetzner node 
+      ansible.builtin.meta: end_host
+      when: "{{ '10.0.0.0/16' | ansible.utils.network_in_network(test_ipadr1) == false and '10.0.0.0/16' | ansible.utils.network_in_network(ansible_host) == false}}"
+
+    - name: drop2 host
+      ansible.builtin.meta: end_host
+      when: "{{ '10.1.0.0/16' | ansible.utils.network_in_network(test_ipadr1) == false and '10.1.0.0/16' | ansible.utils.network_in_network(ansible_host) == false}}"
+        #    - import_tasks: tasks/create_vm.yml
+        
+    - name: message
+      ansible.builtin.debug:
+        msg: this is hetzner 
