@@ -1,45 +1,5 @@
 - hosts: proxmox
   become: yes
   gather_facts: yes
-    # vars:
-    #range_home: '10.0.0.0/16'
-    #range_hetzner: '10.1.0.0/16'
-    #ipadr: '10.0.50.20'
   tasks:
-    - name: set facts
-      ansible.builtin.set_fact:
-        range_home: 10.0.0.0/16
-        range_hetzner: 10.1.0.0/16
-        ipadr: 10.0.50.20
-
-    - name: drop home
-      #ansible.builtin.meta: end_host
-      ansible.builtin.debug:
-        msg: dropped home
-      when: "{{ range_home | ansible.utils.network_in_network(['ipadr']) == false and range_home | ansible.utils.network_in_network(ansible_host) == false }}"
-        ##    - import_tasks: tasks/create_vm.yml
-        
-    - name: drop hetzner node 
-      ansible.builtin.debug:
-        msg: dropped hetzner
-      when: "{{ range_hetzner | ansible.utils.network_in_network(['ipadr']) == false and range_hetzner | ansible.utils.network_in_network(ansible_host) == false }}"
-
-    - name: debug 
-      ansible.builtin.debug:
-        msg: "{{ ['range_hetzner'] | ansible.utils.network_in_network(ansible_host) }}"
-
-    - name: debug variable
-      ansible.builtin.debug:
-        msg: range_home
-
-    - name: debug home
-      ansible.builtin.debug:
-        msg: "{{ range_home | ansible.utils.network_in_network(ansible_host)}}"
-
-    - name: debug hetzner
-      ansible.builtin.debug:
-        msg: "{{ '10.1.0.0/16' | ansible.utils.network_in_network('10.0.50.10/16')}}"
-
-    - name: debug 2
-      ansible.builtin.debug:
-        msg: "{{ ['range_hetzner'] | ansible.utils.network_in_network(['ipadr']) }}"
+    - import_tasks: tasks/create_vm.yml

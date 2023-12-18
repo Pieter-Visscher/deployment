@@ -1,14 +1,54 @@
-- hosts: proxmox
-  become: yes
-  tasks:
-    - import_tasks: deploy.yml
+ - name: Create a full clone of template 9999
+   community.general.proxmox_kvm:
+      node: "{{ host }}"
+      api_user: "{{ user }}"
+      api_password: "{{ password }}"
+      api_host: "{{ host }}"
+      clone: template
+      vmid: 9999
+      newid: "{{ vmid }}"
+      name: "{{ hostname }}"
+      storage: "local-zfs"
+      format: "raw"
 
-      #- hosts: localhost
-      # become: yes
-      #  tasks:
-      #    - import_tasks: hosts.yml
-     
-      #- hosts: deployed
-      #  become: yes
-      #  tasks: 
-      #    - impost_tasks: zabbixagent.yml
+ - name: modify vm to specified specs 
+   community.general.proxmox_kvm:
+      node: "{{ host }}"
+      api_user: "{{ user }}"
+      api_password: "{{ password }}"
+      api_host: "{{ host }}"
+      vmid: "{{ vmid }}"
+      cores: "{{ cpu }}"
+      memory: "{{ mem }}"
+      ipconfig: 
+        ipconfig0: "ip={{ ipadr }}/24,gw={{ gateway  }}"
+      update: true 
+
+ - name: set vlan tag on net 0 
+   community.general.proxmox_nic:
+     api_user: "{{ user }}"
+     api_password: "{{ password }}"
+     api_host: "{{ host }}"
+     vmid: "{{ vmid }}"
+     interface: net0
+     bridge: vmbr0 
+     tag: "{{ vlanTag }}"
+
+ - name: Grow existing disk
+   community.general.proxmox_disk:
+     api_host: "{{ host }}" 
+     api_user: "{{ user }}"
+     api_password: "{{ password }}"
+     vmid: "{{ vmid }}" 
+     disk: scsi0
+     size: "{{ disksize }}G"
+     state: resized
+
+ - name: start the vm
+   community.general.proxmox_kvm:
+     node: "{{ host }}"
+     api_user: "{{ user }}"
+     api_password: "{{ password }}"
+     api_host: "{{ host }}"
+     vmid: "{{ vmid }}"
+     state: started
