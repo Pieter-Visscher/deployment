@@ -1,9 +1,9 @@
  - name: Create a full clone of template 9999
    community.general.proxmox_kvm:
-      node: "{{ host }}"
+      node: "{{ inventory_hostname }}"
       api_user: "{{ user }}"
       api_password: "{{ password }}"
-      api_host: "{{ host }}"
+      api_host: "{{ inventory_hostname }}"
       clone: template
       vmid: 9999
       newid: "{{ vmid }}"
@@ -13,10 +13,10 @@
 
  - name: modify vm to specified specs 
    community.general.proxmox_kvm:
-      node: "{{ host }}"
+      node: "{{ inventory_hostname }}"
       api_user: "{{ user }}"
       api_password: "{{ password }}"
-      api_host: "{{ host }}"
+      api_host: "{{ inventory_hostname }}"
       vmid: "{{ vmid }}"
       cores: "{{ cpu }}"
       memory: "{{ mem }}"
@@ -28,7 +28,7 @@
    community.general.proxmox_nic:
      api_user: "{{ user }}"
      api_password: "{{ password }}"
-     api_host: "{{ host }}"
+     api_host: "{{ inventory_hostname }}"
      vmid: "{{ vmid }}"
      interface: net0
      bridge: vmbr0 
@@ -36,7 +36,7 @@
 
  - name: Grow existing disk
    community.general.proxmox_disk:
-     api_host: "{{ host }}" 
+     api_host: "{{ inventory_hostname }}" 
      api_user: "{{ user }}"
      api_password: "{{ password }}"
      vmid: "{{ vmid }}" 
@@ -46,9 +46,9 @@
 
  - name: start the vm
    community.general.proxmox_kvm:
-     node: "{{ host }}"
+     node: "{{ inventory_hostname }}"
      api_user: "{{ user }}"
      api_password: "{{ password }}"
-     api_host: "{{ host }}"
+     api_host: "{{ inventory_hostname }}"
      vmid: "{{ vmid }}"
      state: started
