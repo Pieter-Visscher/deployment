@@ -16,6 +16,10 @@
     - name: check if ip is in destination subnet
       ansible.builtin.set_fact:
         data: "{{ ipadr is ansible.utils.in_network dest_net }}"
+    
+    - name: debugging data
+      ansible.builtin.debug:
+        msg: "{{ data }}"
 
     - import_tasks: tasks/create_vm.yml
       when: data == "true" 
