@@ -22,4 +22,4 @@
         msg: "{{ data }}"
 
     - import_tasks: tasks/create_vm.yml
-      when: data == "true" 
+      when: "{{ data }}" == "true" 
