@@ -5,6 +5,13 @@
   vars_files:
    - secrets/vault.yml
   tasks:
+    - name: debug ipadr
+      ansible.builtin.debug:
+        msg: "{{ ipadr }}"
+
+    - name: debug dest_net
+      ansible.builtin.debug:
+        msg: "{{ dest_net }}"
 
     - name: check if ip is in destination subnet
       ansible.builtin.set_fact:
