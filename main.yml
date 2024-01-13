@@ -19,7 +19,7 @@
     
     - name: debugging data
       ansible.builtin.debug:
-        msg: "{{ data }}"
+        var: data
 
     - import_tasks: tasks/create_vm.yml
-      when: "{{ data }}" == "true" 
+      when: data 
