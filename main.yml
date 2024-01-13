@@ -9,4 +9,4 @@
         data: "{{ ipaddr is ansible.utils.in_network dest_net }}"
 
     - import_tasks: tasks/create_vm.yml
-      when: "{{ data }}"= true 
+        when: "{{ data }}" == true 
