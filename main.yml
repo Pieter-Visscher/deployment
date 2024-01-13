@@ -2,11 +2,13 @@
   become: yes
   gather_facts: yes
   strategy: debug
+  vars_files:
+   - secrets/vault.yml
   tasks:
 
     - name: check if ip is in destination subnet
       ansible.builtin.set_fact:
-        data: "{{ ipaddr is ansible.utils.in_network dest_net }}"
+        data: "{{ ipadr is ansible.utils.in_network dest_net }}"
 
     - import_tasks: tasks/create_vm.yml
       when: data == "true" 
