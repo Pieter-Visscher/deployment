@@ -2,8 +2,6 @@
   become: yes
   gather_facts: yes
   strategy: debug
-  vars:
-    ipaddr: 10.0.100.30
   tasks:
 
     - name: check if ip is in destination subnet
