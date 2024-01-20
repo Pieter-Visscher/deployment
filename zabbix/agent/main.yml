@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  gather_facts: yes
+  vars_files:
+    - vars/proxies.yml
+  tasks:
+    - import_tasks: tasks/0_install_agent.yml
+    - import_tasks: tasks/1_configure_agent.yml
+
