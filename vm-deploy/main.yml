@@ -1,7 +1,6 @@
 - hosts: all 
   become: yes
   gather_facts: yes
-  strategy: debug
   vars_files:
    - secrets/vault.yml
   tasks:
