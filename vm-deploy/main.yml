@@ -5,21 +5,10 @@
   vars_files:
    - secrets/vault.yml
   tasks:
-    - name: debug ipadr
-      ansible.builtin.debug:
-        msg: "{{ ipadr }}"
-
-    - name: debug dest_net
-      ansible.builtin.debug:
-        msg: "{{ dest_net }}"
 
     - name: check if ip is in destination subnet
       ansible.builtin.set_fact:
         data: "{{ ipadr is ansible.utils.in_network dest_net }}"
     
-    - name: debugging data
-      ansible.builtin.debug:
-        var: data
-
     - import_tasks: tasks/create_vm.yml
       when: data 
