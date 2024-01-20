@@ -9,5 +9,5 @@
       ansible.builtin.set_fact:
         data: "{{ ipadr is ansible.utils.in_network dest_net }}"
     
-    - import_tasks: tasks/create_vm.yml
+    - import_tasks: tasks/0_create_vm.yml
       when: data 
