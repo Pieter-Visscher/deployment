@@ -1,5 +1,5 @@
 - hosts: all
-  become: yes
+  become: true 
   gather_facts: yes
   vars_files:
     - vars/proxies.yml
