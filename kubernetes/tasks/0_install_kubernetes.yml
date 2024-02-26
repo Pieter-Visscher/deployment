@@ -1,0 +1,25 @@
+- name: install dependencies
+  ansible.builtin.apt:
+    pkg:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - gpg
+
+- name: install k8s key
+  ansible.builtin.apt_key:
+    url: https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key
+    keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg 
+    state: present
+
+- name: install k8s repository
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /
+    filename: kubernetes
+
+- name: install kubernetes and componets
+  ansible.builtin.apt:
+    pkg:
+    - kubeadm
+    - kubectl
+    - kubelet
