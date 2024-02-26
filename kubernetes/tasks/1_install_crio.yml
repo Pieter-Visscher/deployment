@@ -42,3 +42,13 @@
     repo: deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/ / 
     filename: cri-o 
 
+- name: install cri-o
+  ansible.builtin.apt:
+    pkg:
+    - cri-o
+    - containernetworking-plugins
+
+- name: hold crio
+  ansible.builtin.dpkg_selections:
+    name: cri-o
+    selection: hold
