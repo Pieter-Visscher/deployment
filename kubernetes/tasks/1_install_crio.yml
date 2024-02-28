@@ -52,3 +52,19 @@
   ansible.builtin.dpkg_selections:
     name: cri-o
     selection: hold
+
+- name: set default cri-o configuration
+  ansible.builtin.shell: crio config --default > /etc/crio/crio.conf
+
+- name: delete default crio.conf from registries.conf.d
+  ansible.builtin.file:
+    path: /etc/containers/registries.conf.d/crio.conf
+    state: absent
+
+- name: place modified crio.conf in registries.conf.d
+  ansible.builtin.copy:
+    src: 'files/crio-template.conf'
+    dest: '/etc/containers/registries.conf.d/crio.conf'
+    owner: root
+    group: root
+    mode: '0644'
