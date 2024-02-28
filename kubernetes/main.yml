@@ -1,6 +1,8 @@
 - hosts: all 
   become: yes
   gather_facts: yes
+  vars_files:
+   - vars.yml
   tasks:
 
     - import_tasks: tasks/0_install_kubernetes.yml
