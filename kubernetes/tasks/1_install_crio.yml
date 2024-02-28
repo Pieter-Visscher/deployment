@@ -68,8 +68,20 @@
 
 - name: place modified crio.conf in registries.conf.d
   ansible.builtin.copy:
-    src: 'files/containers.crio-template.conf'
+    src: 'files/containers.crio.template.conf'
     dest: '/etc/containers/registries.conf.d/crio.conf'
     owner: root
     group: root
     mode: '0644'
+
+- name: set pod cidr
+  ansible.builtin.replace:
+    path: /etc/cni/net.d/11-crio-ipv4-bridge.conflist
+    regexp: '10.85.0.0/16'
+    replace: '{{ pod_cidr }}'
+
+- name: enable and start cri-o
+  ansible.builtin.systemd_service:
+    name: crio
+    state: started
+    enabled: true
