@@ -33,13 +33,13 @@
 
 - name: install cri-o key
   ansible.builtin.apt_key:
-    url: https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/Release.key 
+    url: https://pkgs.k8s.io/addons:/cri-o:/stable:/{{ release }}/deb/Release.key 
     keyring: /etc/apt/keyrings/cri-o-apt-keyring.gpg 
     state: present
 
 - name: install cri-o repository
   ansible.builtin.apt_repository:
-    repo: deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/prerelease:/main/deb/ / 
+    repo: deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/{{ release }}/deb/ / 
     filename: cri-o 
 
 - name: install cri-o
