@@ -5,3 +5,6 @@ collections:
 
   - name: ansible.utils
     source: https://galaxy.ansible.com
+
+  - name: ansible.posix.sysctl
+    source: https://galaxy.ansible.com
