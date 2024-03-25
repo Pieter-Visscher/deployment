@@ -24,7 +24,7 @@
         ipconfig0: "ip={{ ipadr }}/24,gw={{ gateway  }}"
       update: true 
 
- - name: set vlan tag on net 0 
+ - name: set vlan tag on net_0
    community.general.proxmox_nic:
      api_user: "{{ user }}"
      api_password: "{{ password }}"
