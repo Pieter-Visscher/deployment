@@ -1,4 +1,4 @@
 [submodule "vm-deploy/secrets"]
 	path = vm-deploy/secrets
 	url = git@github.com:Pieter-Visscher/secrets.git
-	##branch = main
+	branch = main
