@@ -46,6 +46,7 @@
   ansible.builtin.apt:
     pkg:
     - cri-o
+    - cri-tools
     - containernetworking-plugins
 
 - name: hold crio
