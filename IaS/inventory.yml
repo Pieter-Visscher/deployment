@@ -3,8 +3,8 @@
 #GROUPNAME:
 #  hosts:
 #    HOSTNAME:
-#      vlan: X         NOT SET BY DEFAULT, REQUIRED
-#      id: X           NOT SET BY DEFAULT, REQUIRED
+#      vlan: X         NOT SET BY DEFAULT, REQUIRED, RANGE OF 0-255
+#      id: X           NOT SET BY DEFAULT, REQUIRED, RANGE OF 2-254
 #      cpu: 4          DEFAULT VALUE, OPTIONAL
 #      memory: 4096    DEFAULT VALUE, OPTIONAL
 #      disk: 20        DEFAULT VALUE, OPTIONAL
