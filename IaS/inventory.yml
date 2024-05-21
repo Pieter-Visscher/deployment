@@ -1,9 +1,14 @@
-
-- hosts:
-    proxy:
-      foo: bar
-    web:
-      foo: foo
-  roles:
-    - role: hostspecific 
-    - role:  common 
+webservers:
+  hosts:
+    web01:
+      cpu: 4
+      memory: 4096
+      disk: 20 
+      vlan: 100
+      id: 17 
+    testdeploy:
+      cpu: 1
+      memory: 1024
+      disk: 10
+      vlan: 100
+      id: 20
