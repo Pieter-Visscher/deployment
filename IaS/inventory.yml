@@ -1,14 +1,151 @@
+ungrouped:
+  hosts:
+    
+    OPNsense:
+      cpu: 8
+      memory: 4096
+      disk: 32
+      deploy: false
+
+    wireguard:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 99
+      id: 10
+      deploy: true 
+
+    kube-storage-00:
+      cpu: 4
+      memory: 4096
+      disk: 30
+      vlan: 103
+      id: 30
+      deploy: true 
+
+zabbix:
+  hosts:
+
+    zbx-proxy-htz01.pvisscher.nl:
+      cpu: 4
+      memory: 4096
+      disk: 30
+      vlan: 50
+      id: 11
+      deploy: true 
+
+    zbx-server-htz01:
+      cpu: 4 
+      memory: 4096
+      disk: 100
+      vlan: 50
+      id: 12
+      deploy: true 
+
 webservers:
   hosts:
+
+    bookstack:
+      cpu: 4
+      memory: 4096 
+      disk: 50
+      vlan: 100
+      id: 12 
+      deploy: true 
+
+
     web01:
       cpu: 4
       memory: 4096
       disk: 20 
       vlan: 100
       id: 17 
-    testdeploy:
-      cpu: 1
-      memory: 1024
-      disk: 10
+      deploy: true 
+
+proxies:
+  hosts:
+
+    webproxy:
+      cpu: 4
+      memory: 4096
+      disk: 20
       vlan: 100
+      id: 16
+      deploy: true 
+
+    kube-ha-00:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 13 
+      deploy: true 
+
+    kube-ha-01:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 14
+      deploy: true 
+
+kubernetes:
+  hosts:
+
+    kube-master-00:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 10
+      deploy: true 
+
+    kube-master-01:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 11
+      deploy: true 
+
+    kube-master-02:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 12
+      deploy: true 
+
+    kube-worker-00:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
       id: 20
+      deploy: true 
+
+    kube-worker-01:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 21
+      deploy: true 
+
+    kube-worker-02:
+      cpu: 4
+      memory: 4096
+      disk: 20
+      vlan: 103
+      id: 22
+      deploy: true 
+
+docker:
+  hosts:
+    docker-repo.pieter.fish:
+      cpu: 4
+      memory: 4096
+      disk: 30
+      vlan: 103
+      id: 05
+      deploy: true 
