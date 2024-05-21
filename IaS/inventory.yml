@@ -1,0 +1,9 @@
+
+- hosts:
+    proxy:
+      foo: bar
+    web:
+      foo: foo
+  roles:
+    - role: hostspecific 
+    - role:  common 
