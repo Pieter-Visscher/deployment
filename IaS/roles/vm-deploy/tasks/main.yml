@@ -45,7 +45,7 @@
       vmid: "{{ vlan }}{{ id }}"
       interface: net0
       bridge: "{{ bridge }}"
-      tag: "{{ vlanTag }}"
+      tag: "{{ vlan }}"
 
   - name: Grow existing disk
     community.general.proxmox_disk:
@@ -59,9 +59,9 @@
  
   - name: start the vm
     community.general.proxmox_kvm:
-      node: "{{ inventory_hostname }}"
+      node: "{{ node_name }}"
       api_user: "{{ user }}"
       api_password: "{{ password }}"
-      api_host: "{{ inventory_hostname }}"
+      api_host: "{{ node_name }}"
       vmid: "{{ vlan }}{{ id }}"
       state: started
