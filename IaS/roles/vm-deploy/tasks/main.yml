@@ -1,23 +1,24 @@
   - name: debug vars
     ansible.builtin.debug:
       msg: 
-      - "{{ cpu }}"
-      - "{{ memory }}"
-      - "{{ disk }}"
+      - "{{ cpu | default(4) }}"
+      - "{{ memory | default(4096) }}"
+      - "{{ disk | default(20) }}"
       - "{{ vlan }}"
       - "{{ id }}"
       - "{{ node_name }}"
       - "{{  inventory_hostname }}"
       - "{{ vlan }}{{ id }}"
+      - "{{ testvar }}"
 
-  - name: Create a full clone of template 9999
+  - name: Create a full clone of template
     community.general.proxmox_kvm:
       node: "{{ node_name }}"
       api_user: "{{ user }}"
       api_password: "{{ password }}"
       api_host: "{{ node_name }}"
       clone: template
-      vmid: 9999
+      vmid: "{{ template }}" 
       newid: "{{ vlan }}{{ id }}"
       name: "{{ inventory_hostname }}"
       storage: "{{ storage }}"
@@ -31,8 +32,8 @@
       api_password: "{{ password }}"
       api_host: "{{ node_name }}"
       vmid: "{{ vlan }}{{ id }}"
-      cores: "{{ cpu }}"
-      memory: "{{ memory }}"
+      cores: "{{ cpu | default(4) }}"
+      memory: "{{ memory | default(4096) }}"
       ipconfig: 
         ipconfig0: "ip={{ subnet }}.{{ vlan }}.{{ id }}/{{ cidr }},gw={{ subnet }}.{{ vlan }}.{{ gateway }}"
       update: true 
@@ -54,14 +55,14 @@
       api_password: "{{ password }}"
       vmid: "{{ vlan }}{{ id }}" 
       disk: scsi0
-      size: "{{ disk }}G"
+      size: "{{ disk | default(20)}}G"
       state: resized
  
-  - name: start the vm
+  - name: change state of the VM 
     community.general.proxmox_kvm:
       node: "{{ node_name }}"
       api_user: "{{ user }}"
       api_password: "{{ password }}"
       api_host: "{{ node_name }}"
       vmid: "{{ vlan }}{{ id }}"
-      state: started
+      state: "{{ state | default('started') }}"

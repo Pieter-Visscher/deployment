@@ -6,3 +6,5 @@ subnet: 10.1
 cidr: 24
 gateway: 1
 bridge: vmbr0
+testvar: "standard"
+template: 9999
