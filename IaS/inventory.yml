@@ -9,7 +9,7 @@
 #      memory: 4096    DEFAULT VALUE, OPTIONAL
 #      disk: 20        DEFAULT VALUE, OPTIONAL
 #      deploy: true    DEFAULT VALUE, OPTIONAL, OPTIONS: true OR false
-#      state: started  DEFAULT VALUE, OPTIONAL, OPTIONS: started OR stopped
+#      state: 'started'  DEFAULT VALUE, OPTIONAL, OPTIONS: 'started' OR 'stopped'
 
 ungrouped:
   hosts:
