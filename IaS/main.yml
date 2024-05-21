@@ -1,3 +1,14 @@
 - hosts: all 
-  become: yes
+  become: no
   gather_facts: no
+  roles:
+#    - hostspecific
+  vars_files:
+   - secrets/vault.yml
+  tasks:
+    # START VM DEPLOY ON LOCALHOST
+    - name: start deploy tasks
+      include_role:
+        name: vm-deploy 
+        apply:
+          delegate_to: localhost
