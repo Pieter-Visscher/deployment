@@ -12,3 +12,4 @@
         name: vm-deploy 
         apply:
           delegate_to: localhost
+      when:  deploy | default(true) 

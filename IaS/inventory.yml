@@ -99,6 +99,7 @@ kubernetes:
 
 docker:
   hosts:
+
     docker-repo.pieter.fish:
       disk: 30
       vlan: 103
