@@ -8,8 +8,8 @@
 #      cpu: 4          DEFAULT VALUE, OPTIONAL
 #      memory: 4096    DEFAULT VALUE, OPTIONAL
 #      disk: 20        DEFAULT VALUE, OPTIONAL
-#      deploy: true    DEFAULT VALUE, OPTIONAL, OPTIONS: true OR false
 #      state: 'started'  DEFAULT VALUE, OPTIONAL, OPTIONS: 'started' OR 'stopped'
+#      deploy: true    DEFAULT VALUE, OPTIONAL, OPTIONS: true OR false setting this to valse disables all previously listed options
 
 ungrouped:
   hosts:
@@ -49,7 +49,6 @@ webservers:
       disk: 50
       vlan: 100
       id: 12 
-
 
     web01:
       vlan: 100

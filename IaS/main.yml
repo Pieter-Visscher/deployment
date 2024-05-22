@@ -1,8 +1,6 @@
 - hosts: all 
   become: no
   gather_facts: no
-  roles:
-#    - hostspecific
   vars_files:
    - secrets/vault.yml
   tasks:
@@ -12,4 +10,12 @@
         name: vm-deploy 
         apply:
           delegate_to: localhost
-      when:  deploy | default(true) 
+      when: deploy | default(true) 
+
+    - name: delete inactive VMs
+      include_role:
+        name: vm-cleanup
+        apply:
+          delegate_to: localhost
+      when: deploy | default(true)
+
