@@ -10,6 +10,9 @@
 #      disk: 20        DEFAULT VALUE, OPTIONAL
 #      state: 'started'  DEFAULT VALUE, OPTIONAL, OPTIONS: 'started' OR 'stopped'
 #      deploy: true    DEFAULT VALUE, OPTIONAL, OPTIONS: true OR false setting this to valse disables all previously listed options
+#
+# IF YOU WANT TO KEEP A VM WHICH IS NOT MANAGED BY THE AUTOMATIC DEPLOY ADD ITS ID TO THE VARS:
+# roles/vm-cleanup/vars/main.yml
 
 
 ungrouped:
@@ -37,6 +40,21 @@ ungrouped:
     auto-deploy-test-01:
       vlan: 100
       id: 31
+
+    steam:
+      vlan: 102
+      id: 10
+      memory: 16384
+      disk: 30
+      state: stopped
+
+    minecraft-david:
+      vlan: 100
+      id: 10
+      memory: 32768
+      cpu: 8
+      disk: 60
+      state: stopped
 
 zabbix:
   hosts:
@@ -112,3 +130,26 @@ docker:
       disk: 30
       vlan: 103
       id: 05
+
+nick:
+  hosts:
+
+    NicksFuckUp:
+      id: 11
+      vlan: 101
+      state: stopped
+
+    NicksWebServer:
+      id: 12
+      vlan: 101
+      state: stopped
+
+    nick-mail:
+      id: 13
+      vlan: 101
+      state: stopped
+
+    nick-mail-test:
+      id: 14
+      vlan: 101
+      state: stopped
