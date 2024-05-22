@@ -33,14 +33,6 @@ ungrouped:
       vlan: 103
       id: 30
 
-    auto-deploy-test-00:
-      vlan: 100
-      id: 30
-
-    auto-deploy-test-01:
-      vlan: 100
-      id: 31
-
     steam:
       vlan: 102
       id: 10

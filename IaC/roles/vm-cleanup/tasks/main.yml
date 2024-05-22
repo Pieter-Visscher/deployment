@@ -16,7 +16,7 @@
     run_once: true
 
 #
-  - name: get defined VMs
+  - name: get VMs defined in inventory 
     ansible.builtin.set_fact:
       known_ids: "{{ known_ids|default([]) + [hostvars[item]['vlan']|string+hostvars[item]['id']|string]}}"
     loop: "{{ groups['all'] }}"
@@ -24,23 +24,45 @@
     run_once: true
 
 
-  - name: get vms marked for deletion
+  - name: get VM selection for deletion 
     ansible.builtin.set_fact:
       vmid_deleted: "{{ vmid_list | symmetric_difference(known_ids) }}"
     run_once: true
   
-  - name: debug vmid_list
-    ansible.builtin.debug:
-      msg: "{{ vmid_list }}"
+#  - name: debug vmid_list
+#    ansible.builtin.debug:
+#      msg: "{{ vmid_list }}"
+#    run_once: true
+#
+#  - name: debug known_ids
+#    ansible.builtin.debug:
+#      msg: "{{ known_ids }}"
+#    run_once: true
+#
+#  - name: debug vmids prompted for deletion
+#    ansible.builtin.debug:
+#     msg: 
+#      - "{{ vmid_deleted }}"
+#    run_once: true
+
+  - name: stop VM prompted for deletion
+    community.general.proxmox_kvm:
+      node: "{{ node_name }}"
+      api_user: "{{ user }}"
+      api_password: "{{ password }}"
+      api_host: "{{ node_name }}"
+      vmid: "{{ item }}"
+      state: stopped 
+    loop: "{{ vmid_deleted }}"
     run_once: true
 
-  - name: debug known_ids
-    ansible.builtin.debug:
-      msg: "{{ known_ids }}"
-    run_once: true
-
-  - name: debug vmids prompted for deletion
-    ansible.builtin.debug:
-     msg: 
-      - "{{ vmid_deleted }}"
+  - name: remove VM prompted for deletion
+    community.general.proxmox_kvm:
+      node: "{{ node_name }}"
+      api_user: "{{ user }}"
+      api_password: "{{ password }}"
+      api_host: "{{ node_name }}"
+      vmid: "{{ item }}"
+      state: absent 
+    loop: "{{ vmid_deleted }}"
     run_once: true
