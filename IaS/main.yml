@@ -3,14 +3,15 @@
   gather_facts: no
   vars_files:
    - secrets/vault.yml
+   - vars/vm-lists.yml
   tasks:
     # START VM DEPLOY ON LOCALHOST
-    - name: start deploy tasks
-      include_role:
-        name: vm-deploy 
-        apply:
-          delegate_to: localhost
-      when: deploy | default(true) 
+#    - name: start deploy tasks
+#      include_role:
+#        name: vm-deploy 
+#        apply:
+#          delegate_to: localhost
+#      when: deploy | default(true) 
 
     - name: delete inactive VMs
       include_role:

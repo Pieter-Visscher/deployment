@@ -1,0 +1,73 @@
+ #- name: create empty list
+ #  ansible.builtin.set_fact:
+ #    vmid_list: []
+ #    known_vmid_list: []
+ #  run_once: true
+#
+#  - name: get all VMs on node
+#    community.general.proxmox_vm_info:
+#      node: "{{ node_name }}"
+#      api_user: "{{ user }}"
+#      api_password: "{{ password }}"
+#      api_host: "{{ node_name }}"
+#      type: qemu
+#    run_once: true
+#    register: proxmox_vms
+#
+#  - name: extract vmid
+#    ansible.builtin.debug:
+#    msg
+
+  - name: create a list of all galera node ips
+    set_fact:
+      known_ids: "{{ known_ids|default([]) + hostvars['vlan']['id']}}"
+    loop: "{{ groups['all'] }}"
+    run_once: true
+  
+  - name: debug vars
+    debug:
+      msg: "{{ known_ids }}"
+#
+# - name: filter json to vmid
+#   ansible.builtin.set_fact:
+# #    vmid_list: "{{ vmid_list + [ community.general.json_query('proxmox_vms[*].vmid')] }}" 
+#     var: item
+#   loop: "{{ proxmox_vms | community.general.json_query('proxmox_vms[*].vmid') }}"
+#   register: vmid_list 
+#   run_once: true
+#
+# - name: get known VM info
+#   community.general.proxmox_vm_info:
+#     node: "{{ node_name }}"
+#     api_user: "{{ user }}"
+#     api_password: "{{ password }}"
+#     api_host: "{{ node_name }}"
+#     type: qemu
+#     vmid: "{{ vlan }}{{ id }}"
+#   register: current_vmid_json
+#
+# - name: register current_vmid
+#   ansible.builtin.set_fact:
+#     var: item
+#   loop: "{{ current_vmid_json | community.general.json_query('proxmox_vms[*].vmid') }}"
+#   register: current_vmid 
+#
+# - name: create list of known vmids
+#   ansible.builtin.set_fact:
+#     known_vmid_list: "{{ known_vmid_list + [current_vmid] }}"
+## - name: create array of known VMs
+##   ansible.builtin.set_fact:
+##     var: item
+##   loop: "{{}}"
+#
+# - name: get vms marked for deletion
+#   ansible.builtin.set_fact:
+#     vmid_deleted: "{{ vmid_list | difference(known_vmid_list)}}"
+#
+#
+# - name: debug vmids prompted for deletion
+#   ansible.builtin.debug:
+#    msg: 
+#     - "{{ known_vmid_list }}"
+#   run_once: true
+#

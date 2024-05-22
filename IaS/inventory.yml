@@ -11,6 +11,7 @@
 #      state: 'started'  DEFAULT VALUE, OPTIONAL, OPTIONS: 'started' OR 'stopped'
 #      deploy: true    DEFAULT VALUE, OPTIONAL, OPTIONS: true OR false setting this to valse disables all previously listed options
 
+
 ungrouped:
   hosts:
     
@@ -28,6 +29,14 @@ ungrouped:
       disk: 30
       vlan: 103
       id: 30
+
+    auto-deploy-test-00:
+      vlan: 100
+      id: 30
+
+    auto-deploy-test-01:
+      vlan: 100
+      id: 31
 
 zabbix:
   hosts:
