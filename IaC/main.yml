@@ -13,6 +13,7 @@
           delegate_to: localhost
       when: deploy | default(true) 
 
+    # START VM DELETION ON LOCALHOST
     - name: delete inactive VMs
       include_role:
         name: vm-cleanup
@@ -20,3 +21,8 @@
           delegate_to: localhost
       when: deploy | default(true)
 
+    # INSTALL KUBERNETES CORE ON KUBERNETES NODES 
+    - name: install kubernetes core
+      include_role:
+        name: kubernetes-core
+      when: kubernetes is defined 

@@ -125,6 +125,11 @@ kubernetes:        #
       vlan: 103
       id: 22
 
+    test-k8s-node-00:
+      vlan: 103
+      id: 200
+      kubernetes: v1.29
+
 ####################
 docker:            #
   hosts:           #
