@@ -14,9 +14,10 @@
 # IF YOU WANT TO KEEP A VM WHICH IS NOT MANAGED BY THE AUTOMATIC DEPLOY ADD ITS ID TO THE VARS:
 # roles/vm-cleanup/vars/main.yml
 
-
-ungrouped:
-  hosts:
+####################
+ungrouped:         #
+  hosts:           #
+####################
     
     OPNsense:
       cpu: 8
@@ -48,8 +49,10 @@ ungrouped:
       disk: 60
       state: stopped
 
-zabbix:
-  hosts:
+####################
+zabbix:            #
+  hosts:           #
+####################
 
     zbx-proxy-htz01.pvisscher.nl:
       disk: 30
@@ -61,8 +64,11 @@ zabbix:
       vlan: 50
       id: 12
 
-webservers:
-  hosts:
+
+####################
+webservers:        #
+  hosts:           #
+####################
 
     bookstack:
       disk: 50
@@ -73,8 +79,10 @@ webservers:
       vlan: 100
       id: 17 
 
-proxies:
-  hosts:
+####################
+proxies:           #
+  hosts:           #
+####################
 
     webproxy:
       vlan: 100
@@ -88,8 +96,10 @@ proxies:
       vlan: 103
       id: 14
 
-kubernetes:
-  hosts:
+####################
+kubernetes:        #
+  hosts:           #
+####################
 
     kube-master-00:
       vlan: 103
@@ -115,16 +125,20 @@ kubernetes:
       vlan: 103
       id: 22
 
-docker:
-  hosts:
+####################
+docker:            #
+  hosts:           #
+####################
 
     docker-repo.pieter.fish:
       disk: 30
       vlan: 103
       id: 05
 
-nick:
-  hosts:
+####################
+nick:              #
+  hosts:           #
+####################
 
     NicksFuckUp:
       id: 11

@@ -39,11 +39,11 @@
 #      msg: "{{ known_ids }}"
 #    run_once: true
 #
-#  - name: debug vmids prompted for deletion
-#    ansible.builtin.debug:
-#     msg: 
-#      - "{{ vmid_deleted }}"
-#    run_once: true
+  - name: debug vmids prompted for deletion
+    ansible.builtin.debug:
+     msg: 
+      - "{{ vmid_deleted }}"
+    run_once: true
 
   - name: stop VM prompted for deletion
     community.general.proxmox_kvm:
