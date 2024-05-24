@@ -19,11 +19,11 @@ ungrouped:         #
   hosts:           #
 ####################
     
-    OPNsense:
-      cpu: 8
-      memory: 4096
-      disk: 32
-      deploy: false
+#    OPNsense:
+#      cpu: 8
+#      memory: 4096
+#      disk: 32
+#      deploy: false
 
     wireguard:
       vlan: 99
@@ -135,7 +135,7 @@ docker:            #
   hosts:           #
 ####################
 
-    docker-repo.pieter.fish:
+    docker-repo.pvisscher.nl:
       disk: 30
       vlan: 103
       id: 05

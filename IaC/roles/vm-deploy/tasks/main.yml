@@ -65,3 +65,8 @@
       api_host: "{{ node_name }}"
       vmid: "{{ vlan }}{{ id }}"
       state: "{{ state | default('started') }}"
+
+  - name: create DNS record for VM in /etc/hosts
+    ansible.builtin.lineinfile:
+      path: /etc/hosts
+      line: "{{ subnet }}.{{ vlan }}.{{ id }} {{ inventory_hostname }}"
