@@ -46,10 +46,12 @@
       names_deleted: "{{ name_list | difference(known_names) }}"
     run_once: true
 
-  - name: debug deleted_vms_proxmox
-    ansible.builtin.debug:
-      msg: "{{ names_deleted}}"
-    run_once: true
+#  - name: debug deleted_vms_proxmox
+#    ansible.builtin.debug:
+#      msg: 
+#      - "{{ names_deleted}}"
+#      - "{{ vmid_deleted }}"
+#    run_once: true
 
   - name: stop VM prompted for deletion
     community.general.proxmox_kvm:
